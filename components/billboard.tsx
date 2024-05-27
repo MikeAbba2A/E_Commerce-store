@@ -26,3 +26,5 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
 }
 
 export default Billboard;
+
+// comit
