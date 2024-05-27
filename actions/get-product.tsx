@@ -14,6 +14,7 @@ const getProduct = async (id: string): Promise<Product> => {
     }
 
     const data = await res.json();
+    console.log('Product data:', data); // Ajoutez ce log pour vérifier les données récupérées
     return data;
 };
 
