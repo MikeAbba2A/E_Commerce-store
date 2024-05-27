@@ -10,10 +10,10 @@ interface InfoProps{
     data: Product;
 }
 
-const Info: React.FC<InfoProps> = ({
-    data
-}) => {
+const Info: React.FC<InfoProps> = ({ data }) => {
     const cart = useCart();
+
+    console.log('Product data in Info component:', data); // Ajoutez ce log
 
     const onAddToCart = () => {
         cart.addItem(data);
@@ -31,9 +31,7 @@ const Info: React.FC<InfoProps> = ({
             <div className="flex flex-col gap-y-6">
                 <div className="flex items-center gap-x-4">
                     <h3 className="font-semibold text-black">Taille:</h3>
-                    <div>
-                        {data?.size?.value}
-                    </div>
+                    <div>{data?.size?.value}</div>
                 </div>
                 <div className="flex items-center gap-x-4">
                     <h3 className="font-semibold text-black">Couleur:</h3>
@@ -41,9 +39,7 @@ const Info: React.FC<InfoProps> = ({
                 </div>
                 <div className="flex items-center gap-x-4">
                     <h3 className="font-semibold text-black">Description:</h3>
-                    <div>
-                        {data?.description}
-                    </div>
+                    <div>{data?.description}</div>
                 </div>
             </div>
             <div className="mt-10 flex items-center gap-x-3">
