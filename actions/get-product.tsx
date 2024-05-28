@@ -6,6 +6,7 @@ const getProduct = async (id: string): Promise<Product> => {
     const res = await fetch(url, {
         headers: {
             'Content-Type': 'application/json',
+            'Cache-Control': 'no-store' // Désactiver le cache
         },
     });
 

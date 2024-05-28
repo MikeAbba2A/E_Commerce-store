@@ -5,6 +5,8 @@ import Container from "@/components/ui/container";
 import Gallery from "@/components/gallery";
 import Info from "@/components/info";
 
+export const revalidate = 0; // Désactiver la mise en cache
+
 interface ProductPageProps {
     params: {
         productId: string;
@@ -17,7 +19,10 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     const product = await getProduct(params.productId);
     const suggestedProducts = await getProducts({
         categoryId: product?.category?.id
-    })
+    });
+
+    console.log('Product data in ProductPage:', product); // Ajoutez ce log pour vérifier les données
+
     return(
         <div className="bg-white">
             <Container>
@@ -34,7 +39,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({
                 </div>
             </Container>
         </div>
-    )
+    );
 }
 
 export default ProductPage;
