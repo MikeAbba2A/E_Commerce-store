@@ -4,8 +4,7 @@ import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
 import Gallery from "@/components/gallery";
 import Info from "@/components/info";
-import getBillboard from "@/actions/get-billboard";
-import Billboard from "@/components/billboard";
+
 
 export const revalidate = 0; // Désactiver la mise en cache
 
@@ -22,14 +21,13 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     const suggestedProducts = await getProducts({
         categoryId: product?.category?.id
     });
-    const billboard = await getBillboard("c3c32630-cf86-4318-ae41-f52ebbaf031c");
+    
 
     console.log('Product data in ProductPage:', product); // Ajoutez ce log pour vérifier les données
 
     return(
         <div className="bg-white">
             <Container>
-                <Billboard data={billboard} />
                 <div className="px-4 py-10 sm:px-6 lg:px-8">
                     <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                         <Gallery images={product.images} />
