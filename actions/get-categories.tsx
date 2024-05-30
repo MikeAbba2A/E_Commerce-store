@@ -6,6 +6,7 @@ const getCategories = async (): Promise<Category[]> => {
     const res = await fetch(url, {
         headers: {
             'Content-Type': 'application/json',
+            'Cache-Control': 'no-store', // Désactiver le cache
         },
     });
 
