@@ -35,6 +35,8 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
     const colors = await getColors();
     const category = await getCategory(params.categoryId);
 
+    // Filtrer les tailles pour n'afficher que celles associées à la catégorie
+    const filteredSizes = sizes.filter(size => category.sizes.some((catSize: { id: string }) => catSize.id === size.id));
 
     return(
         <div className="bg-white">
@@ -46,13 +48,13 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
                     <div className="lg:grid lg:grid-cols-5 lg:gap-x-8 ">
                         { /* Ajouter filtres mobile */ }
                         <MobileFilters 
-                            sizes={sizes} colors={colors} 
+                            sizes={filteredSizes} colors={colors} 
                         />
                         <div className="hidden lg:block">
                             <Filter 
                                 valueKey="sizeId"
                                 name="Sizes"
-                                data={sizes}
+                                data={filteredSizes}
                             />
                             <Filter 
                                 valueKey="colorId"

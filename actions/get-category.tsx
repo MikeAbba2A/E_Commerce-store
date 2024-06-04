@@ -10,7 +10,7 @@ const getCategory = async (id: string): Promise<Category> => {
     });
 
     if (!res.ok) {
-        throw new Error('Une erreur est survenue lors de la récupération du produit');
+        throw new Error('Une erreur est survenue lors de la récupération de la catégorie');
     }
 
     const data = await res.json();

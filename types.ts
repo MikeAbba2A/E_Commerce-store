@@ -7,8 +7,12 @@ export interface Billboard {
 export interface Category {
     id: string;
     name: string;
-    billboard: Billboard;
-};
+    billboardId: string;
+    sizes: Size[]; // Ajoutez cette ligne
+    billboard: Billboard; // Ajoutez cette ligne
+    createdAt: string;
+    updatedAt: string;
+  }
 
 export interface Product {
     id: string;
@@ -31,7 +35,7 @@ export interface Size {
     id: string;
     name: string;
     value: string;
-};
+  }
 
 export interface Color {
     id: string;
