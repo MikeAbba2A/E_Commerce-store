@@ -33,11 +33,15 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
     const colors = await getColors();
     const category = await getCategory(params.categoryId);
 
+    console.log('Category data:', category); // Ajoutez ceci pour déboguer
+
     if (!category) {
         return <NoResults />;
     }
 
     const filteredSizes = category.sizes ?? [];
+
+    console.log('Filtered sizes:', filteredSizes); // Ajoutez ceci pour déboguer
 
     return(
         <div className="bg-white">
