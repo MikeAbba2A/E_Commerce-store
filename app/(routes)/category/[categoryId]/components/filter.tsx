@@ -17,7 +17,6 @@ const Filter: React.FC<FilterProps> = ({
     name,
     valueKey
 }) => {
-
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -43,7 +42,7 @@ const Filter: React.FC<FilterProps> = ({
         router.push(url);
     }
 
-    console.log('Filter data:', data); // Ajoutez ceci pour déboguer
+    console.log('Filter data:', data); // Déboguer
 
     return ( 
         <div className="mb-8">
