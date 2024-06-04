@@ -43,6 +43,8 @@ const Filter: React.FC<FilterProps> = ({
         router.push(url);
     }
 
+    console.log('Filter data:', data); // Ajoutez ceci pour déboguer
+
     return ( 
         <div className="mb-8">
             <h3 className="text-lg font-semibold">
