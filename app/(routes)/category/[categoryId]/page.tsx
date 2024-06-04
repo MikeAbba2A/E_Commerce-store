@@ -31,12 +31,10 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
         sizeId: searchParams.sizeId
     });
 
-    const sizes = await getSizes();
     const colors = await getColors();
     const category = await getCategory(params.categoryId);
 
-    // Vérifier que category.sizes est défini avant d'utiliser la méthode some
-    const filteredSizes = sizes.filter(size => category.sizes?.some((catSize: { id: string }) => catSize.id === size.id));
+    const filteredSizes = category.sizes; // Utiliser les tailles de la catégorie directement
 
     return(
         <div className="bg-white">
