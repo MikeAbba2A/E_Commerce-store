@@ -14,7 +14,6 @@ const getCategory = async (id: string): Promise<Category> => {
     }
 
     const data = await res.json();
-    console.log('Fetched category data:', data); // Déboguer
     return data;
 };
 
