@@ -1,35 +1,52 @@
-import React from 'react';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import ProductCard from './ui/product-card';
-import { Product } from '@/types';
+"use client";
 
-interface ProductSliderProps {
-  products: Product[];
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { useParams } from 'next/navigation';
+
+interface SliderImage {
+  id: string;
+  url: string;
 }
 
-const ProductSlider: React.FC<ProductSliderProps> = ({ products }) => {
-  console.log('Rendering ProductSlider with products:', products);
+const ProductSlider: React.FC = () => {
+  const params = useParams();
+  const [images, setImages] = useState<SliderImage[]>([]);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-  };
+  useEffect(() => {
+    console.log('Fetching images for storeId:', params.storeId);
+    if (params.storeId) {
+      axios.get(`/api/${params.storeId}/slider-images`).then((response) => {
+        console.log('Images fetched:', response.data);  // Debug message
+        setImages(response.data);
+      }).catch((error) => {
+        console.error('Error fetching slider images:', error);
+      });
+    }
+  }, [params.storeId]);
+
+  if (images.length === 0) {
+    return <div>No images found</div>;  // Message to show if no images are found
+  }
 
   return (
     <div>
-      <h2>Produits Populaires</h2>
-      <Slider {...settings}>
-        {products.map((product) => (
-          <div key={product.id}>
-            <ProductCard data={product} />
-          </div>
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={1}
+        navigation
+        pagination={{ clickable: true }}
+      >
+        {images.map((image) => (
+          <SwiperSlide key={image.id}>
+            <img src={image.url} alt="Slider Image" />
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 };
